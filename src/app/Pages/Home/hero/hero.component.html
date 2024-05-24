@@ -1,14 +1,49 @@
-<section id="hero" class="flex justify-center py-10 gap-10">
-  <img
-    src="https://placehold.co/600x400"
-    alt="placeholder"
-    class="rounded-md"
-  />
-  <div class="bg-red-200 w-1/3 h-full flex gap-5 flex-col">
-    <h1 class="text-5xl font-bold">Recipe Book</h1>
-    <p class="text-2xl">
-      A collection of recipes from around the world. Find your next meal here or
-      create your own recipe to share with the world.
-    </p>
+<section id="hero" class="flex justify-center py-10">
+  <!-- src="https://placehold.co/600x400" -->
+  <div class="relative w-[600px] h-[400px]">
+    <ng-container *ngFor="let image of images; let i = index">
+      <img
+        [src]="image"
+        alt="placeholder"
+        class="rounded-tl-md rounded-bl-md w-full h-full object-cover object-bottom shadow-md absolute transition-opacity duration-[1500ms]"
+        [class.opacity-100]="i === currentImageIndex"
+        [class.opacity-0]="i !== currentImageIndex"
+      />
+    </ng-container>
+    <div
+      class="absolute bottom-0 left-0 right-0 flex justify-center space-x-2 p-2"
+    >
+      <ng-container *ngFor="let image of images; let i = index">
+        <div
+          class="w-2 h-2 rounded-full bg-white cursor-pointer"
+          [class.bg-blue-500]="i === currentImageIndex"
+          (click)="currentImageIndex = i"
+        ></div>
+      </ng-container>
+    </div>
+  </div>
+  <div
+    class="w-1/3 flex flex-col bg-white p-5 rounded-tr-md rounded-br-md shadow-md justify-between"
+  >
+    <span>
+      <h1 class="text-5xl font-bold">Recipe Book</h1>
+      <p class="text-2xl py-5">
+        Dive into our diverse recipe collection from around the globe. Find new
+        favorites or classic comforts, and contribute your own culinary
+        creations to our growing community.
+      </p>
+    </span>
+    <div class="flex items-center justify-center gap-10">
+      <button
+        class="bg-white shadow-md p-3 rounded-md uppercase font-semibold text-blue-500 hover:bg-blue-500 duration-300 ease-in-out hover:text-white"
+      >
+        explore
+      </button>
+      <button
+        class="bg-white shadow-md p-3 rounded-md uppercase font-semibold text-orange-500 hover:bg-orange-500 duration-300 ease-in-out hover:text-white"
+      >
+        contribute
+      </button>
+    </div>
   </div>
 </section>
