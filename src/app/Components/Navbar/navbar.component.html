@@ -1,0 +1,18 @@
+<nav class="shadow-md">
+  <div class="flex items-center justify-between w-full padding-x-3">
+    <a routerLink="/home" class="text-[2rem] hover:text-pink-500"
+      ><fa-icon [icon]="faShrimp"></fa-icon
+    ></a>
+    <ul class="flex items-center gap-5 py-3">
+      <li *ngFor="let item of navItems">
+        <a
+          [routerLink]="item.path"
+          class="flex font-semibold items-center gap-2 duration-150 ease-in-out hover:text-blue-500"
+        >
+          <fa-icon [icon]="item.icon"></fa-icon>
+          {{ item.name }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
