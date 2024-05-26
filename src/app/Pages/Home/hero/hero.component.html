@@ -17,8 +17,11 @@
     >
       <ng-container *ngFor="let image of images; let i = index">
         <div
-          class="w-2 h-2 rounded-full bg-white cursor-pointer"
-          [class.bg-blue-500]="i === currentImageIndex"
+          class="w-2 h-2 rounded-full cursor-pointer"
+          [ngClass]="{
+            'bg-white': i !== currentImageIndex,
+            'bg-orange-500': i === currentImageIndex
+          }"
           (click)="currentImageIndex = i"
         ></div>
       </ng-container>
