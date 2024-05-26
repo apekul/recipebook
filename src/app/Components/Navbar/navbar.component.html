@@ -1,9 +1,12 @@
-<nav class="shadow-md">
+<nav #navbar class="bg-white transition-all ease-in duration-500 py-2 relative">
   <div class="flex items-center justify-between w-full padding-x-3">
-    <a routerLink="/home" class="text-[2rem] hover:text-pink-500"
-      ><fa-icon [icon]="faShrimp"></fa-icon
-    ></a>
-    <ul class="flex items-center gap-5 py-3">
+    <a
+      routerLink="/home"
+      class="text-[2rem] flex items-center gap-3 hover:text-blue-500"
+      ><fa-icon [icon]="faShrimp"></fa-icon>
+      <span class="text-base font-semibold">Recipe Book</span>
+    </a>
+    <ul class="items-center gap-5 py-3 md:flex hidden">
       <li *ngFor="let item of navItems">
         <a
           [routerLink]="item.path"
@@ -13,6 +16,27 @@
           {{ item.name }}
         </a>
       </li>
+    </ul>
+    <!-- mobilenav -->
+    <ul class="items-center gap-5 py-3 md:hidden flex z-20">
+      <button class="text-xl" (click)="toggleNav()">
+        <fa-icon *ngIf="!isNavOpen" [icon]="faBars"></fa-icon>
+        <fa-icon *ngIf="isNavOpen" [icon]="faXmark"></fa-icon>
+      </button>
+      <div
+        class="absolute top-[4.25rem] right-0 p-5 flex flex-col gap-3 bg-white"
+        [class.hidden]="!isNavOpen"
+      >
+        <li *ngFor="let item of navItems">
+          <a
+            [routerLink]="item.path"
+            class="flex font-semibold items-center gap-2 duration-150 ease-in-out hover:text-blue-500"
+          >
+            <fa-icon [icon]="item.icon"></fa-icon>
+            {{ item.name }}
+          </a>
+        </li>
+      </div>
     </ul>
   </div>
 </nav>

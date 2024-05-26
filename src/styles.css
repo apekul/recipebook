@@ -10,6 +10,7 @@
 }
 
 .padding-x-3 {
-  padding-left: 10rem;
-  padding-right: 10rem;
+  @apply px-[1rem] md:px-[5rem] 2xl:px-[15rem];
+  /* padding-left: 20rem;
+  padding-right: 20rem; */
 }

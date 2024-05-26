@@ -1,11 +1,13 @@
-<section id="hero" class="flex justify-center py-10">
-  <!-- src="https://placehold.co/600x400" -->
-  <div class="relative w-[600px] h-[400px]">
+<section
+  id="hero"
+  class="flex pt-[1rem] md:pt-[4rem] flex-col md:flex-row items-center xl:items-start"
+>
+  <div class="relative w-full md:w-[500px] xl:w-[700px] h-[300px] sm:h-[400px]">
     <ng-container *ngFor="let image of images; let i = index">
       <img
         [src]="image"
         alt="placeholder"
-        class="rounded-tl-md rounded-bl-md w-full h-full object-cover object-bottom shadow-md absolute transition-opacity duration-[1500ms]"
+        class="md:rounded-tl-[10rem] md:rounded-bl-md w-full h-full object-cover object-bottom shadow-md absolute transition-opacity duration-[1500ms]"
         [class.opacity-100]="i === currentImageIndex"
         [class.opacity-0]="i !== currentImageIndex"
       />
@@ -23,17 +25,19 @@
     </div>
   </div>
   <div
-    class="w-1/3 flex flex-col bg-white p-5 rounded-tr-md rounded-br-md shadow-md justify-between"
+    class="flex w-full h-full md:h-[400px] md:w-[500px] flex-auto xl:flex-1 flex-col bg-white p-5 md:rounded-tr-md md:rounded-br-[10rem] shadow-md md:justify-between"
   >
     <span>
-      <h1 class="text-5xl font-bold">Recipe Book</h1>
-      <p class="text-2xl py-5">
+      <h1 class="text-3xl xl:text-5xl font-bold">Recipe Book</h1>
+      <p class="text-lg xl:text-2xl py-5">
         Dive into our diverse recipe collection from around the globe. Find new
         favorites or classic comforts, and contribute your own culinary
         creations to our growing community.
       </p>
     </span>
-    <div class="flex items-center justify-center gap-10">
+    <div
+      class="flex items-center justify-start gap-3 lg:gap-10 flex-col md:flex-row"
+    >
       <button
         class="bg-white shadow-md p-3 rounded-md uppercase font-semibold text-blue-500 hover:bg-blue-500 duration-300 ease-in-out hover:text-white"
       >

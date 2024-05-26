@@ -1,0 +1,29 @@
+<section class="flex flex-col gap-3">
+  <h1 class="text-2xl font-bold">{{ title }}</h1>
+  <ul
+    class="gap-10 flex items-center w-full justify-around flex-wrap md:flex-nowrap"
+  >
+    <li
+      class="item w-full cursor-pointer overflow-hidden"
+      *ngFor="let item of items"
+      [routerLink]="['/recipe', item.id]"
+    >
+      <div class="image-container rounded-md">
+        <img
+          [src]="item.img"
+          alt="item.name"
+          class="w-full h-64 object-cover"
+        />
+      </div>
+      <span *ngFor="let star of stars; index as i">
+        <fa-icon
+          [icon]="faStar"
+          [ngStyle]="{ color: getStarColor(i, +item.rate) }"
+        ></fa-icon>
+      </span>
+      <p class="text-xl font-semibold text-gray">
+        {{ item.name }}
+      </p>
+    </li>
+  </ul>
+</section>

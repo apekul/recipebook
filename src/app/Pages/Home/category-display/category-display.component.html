@@ -1,0 +1,17 @@
+<section class="flex flex-col gap-3">
+  <h1 class="text-2xl font-bold">Categories</h1>
+  <ul class="gap-10 inline-flex items-center justify-around overflow-x-auto">
+    <li
+      class="cursor-pointer h-full w-[5rem] lg:w-[10rem] flex-shrink-0 py-10"
+      *ngFor="let cat of categories"
+    >
+      <img
+        [src]="cat.strCategoryThumb"
+        class="rounded-xl w-full h-full object-cover"
+      />
+      <p class="text-center">
+        {{ cat.strCategory }}
+      </p>
+    </li>
+  </ul>
+</section>

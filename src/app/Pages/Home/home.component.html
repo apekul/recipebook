@@ -1,5 +1,59 @@
-<section class="padding-x-3 min-h-screen bg-gray-100">
-  <app-hero />
-  <div>Information About page/ what it provides etc</div>
-  <div>Statistics or something</div>
+<section class="min-h-screen bg-gray-100 flex flex-col gap-[4rem]">
+  <div class="padding-x-3 flex flex-col gap-[4rem]">
+    <app-hero />
+    <app-category-display />
+    <app-item-display
+      [items]="[
+        {
+          id: '1',
+          name: 'Cake',
+          img: '../../../../assets/Images/hero/cake.jpg',
+          rate: '4.5'
+        },
+        {
+          id: '2',
+          name: 'Dumpling',
+          img: '../../../../assets/Images/hero/dumpling.jpg',
+          rate: '4.2'
+        },
+        {
+          id: '3',
+          name: 'Taco',
+          img: '../../../../assets/Images/hero/taco.jpg',
+          rate: '4.7'
+        },
+        {
+          id: '4',
+          name: 'Bowl',
+          img: '../../../../assets/Images/hero/bowl.jpg',
+          rate: '4.0'
+        }
+      ]"
+      [title]="'Popular Recipes'"
+    />
+    <app-item-display
+      [items]="[
+        {
+          id: '5',
+          name: 'Cake',
+          img: '../../../../assets/Images/hero/cake.jpg',
+          rate: '4.5'
+        },
+        {
+          id: '6',
+          name: 'Dumpling',
+          img: '../../../../assets/Images/hero/dumpling.jpg',
+          rate: '4.2'
+        },
+        {
+          id: '7',
+          name: 'Taco',
+          img: '../../../../assets/Images/hero/taco.jpg',
+          rate: '4.7'
+        }
+      ]"
+      [title]="'Sweet Tooth'"
+    />
+  </div>
+  <app-newsletter />
 </section>
