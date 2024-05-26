@@ -51,8 +51,7 @@ export class Navbar implements OnInit, AfterViewInit {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    if (window.pageYOffset > 100) {
-      // you can change 100 to any value
+    if (window.pageYOffset > 150) {
       this.navbar.nativeElement.classList.add('fixed-nav');
     } else {
       this.navbar.nativeElement.classList.remove('fixed-nav');
