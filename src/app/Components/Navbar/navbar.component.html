@@ -1,4 +1,7 @@
-<nav #navbar class="bg-white transition-all ease-in duration-500 relative">
+<nav
+  #navbar
+  class="bg-white transition-all ease-in duration-500 relative select-none"
+>
   <div class="flex items-center justify-between w-full padding-x-3">
     <a
       routerLink="/home"
@@ -9,7 +12,8 @@
     <ul class="items-center gap-5 py-3 md:flex hidden">
       <li *ngFor="let item of navItems">
         <a
-          [routerLink]="item.path"
+          href="{{ item.path }}"
+          (click)="navigate(item.path, $event)"
           class="flex font-semibold items-center gap-2 duration-150 ease-in-out hover:text-blue-500"
         >
           <fa-icon [icon]="item.icon"></fa-icon>
@@ -24,7 +28,7 @@
         <fa-icon *ngIf="isNavOpen" [icon]="faXmark"></fa-icon>
       </button>
       <div
-        class="absolute top-[4.25rem] right-0 p-5 flex flex-col gap-3 bg-white"
+        class="absolute top-[3.25rem] right-0 p-5 flex flex-col gap-3 bg-white"
         [class.hidden]="!isNavOpen"
       >
         <li *ngFor="let item of navItems">

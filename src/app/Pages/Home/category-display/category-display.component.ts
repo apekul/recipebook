@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { categories } from '../../../../assets/categories';
+import { Router } from '@angular/router';
+import { categories } from '../../../../assets/dataObject';
 
 @Component({
   selector: 'app-category-display',
@@ -8,4 +9,10 @@ import { categories } from '../../../../assets/categories';
 })
 export class CategoryDisplayComponent {
   categories = categories;
+
+  constructor(private router: Router) {}
+
+  onCategoryClick(category: string) {
+    this.router.navigate(['/recipes', { category: category }]);
+  }
 }

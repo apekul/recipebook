@@ -1,0 +1,27 @@
+<li
+  class="bg-white shadow-md rounded-md p-2 md:p-3 flex flex-col justify-between h-full relative"
+>
+  <fa-icon
+    [icon]="faHeart"
+    class="absolute top-1 right-2 text-xl text-gray-300 cursor-pointer hover:text-red-500 transition duration-150"
+  />
+
+  <p class="text-start font-bold text-xl pb-2 pr-2">
+    {{ recipe.strMeal }}
+  </p>
+  <div>
+    <img [src]="recipe.strMealThumb" class="rounded-md" />
+    <div class="py-1">
+      <span *ngFor="let star of stars; index as i">
+        <fa-icon
+          [icon]="faStar"
+          [ngStyle]="{ color: getStarColor(i, 4) }"
+        ></fa-icon>
+      </span>
+    </div>
+    <span class="flex items-center text-white flex-wrap gap-1">
+      <p class="bg-blue-500 px-2 rounded-md">{{ recipe.strArea }}</p>
+      <p class="bg-orange-500 px-2 rounded-md">{{ recipe.strCategory }}</p>
+    </span>
+  </div>
+</li>

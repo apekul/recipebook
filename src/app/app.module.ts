@@ -7,6 +7,7 @@ import { Footer } from './Components/Footer/footer.component';
 
 import { RouterModule } from '@angular/router';
 import { HomeModule } from './Pages/Home/home.module';
+import { RecipesListModule } from './Pages/Recipes-list/recipes-list.module';
 import { routes } from './app.routes';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -17,6 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserModule,
     RouterModule.forRoot(routes),
     HomeModule,
+    RecipesListModule,
     FontAwesomeModule,
   ],
   providers: [],

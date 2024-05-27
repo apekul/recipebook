@@ -61,4 +61,12 @@ export class Navbar implements OnInit, AfterViewInit {
   toggleNav() {
     this.isNavOpen = !this.isNavOpen;
   }
+
+  navigate(path: string, event: Event) {
+    if (this.router.url === path) {
+      event.preventDefault();
+    } else {
+      this.router.navigate([path]);
+    }
+  }
 }
