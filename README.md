@@ -1,27 +1,42 @@
-# Firstangular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
+# Reacipe Book
 
-## Development server
+This is a Recipe Book application built with Angular. The application allows users to view, add, edit, and delete recipes. It's a great way to keep all your favorite recipes in one place and access them easily.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+- View Recipes: Browse through a list of recipes. Each recipe card displays the name, image, rating, area, and category of the recipe.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Add Recipes: Add new recipes to the recipe book. The application uses Angular's form handling for recipe input, ensuring a smooth user experience.
 
-## Build
+- Edit Recipes: Update the details of existing recipes. Whether you want to tweak the ingredients or steps of a recipe, this feature has you covered.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Delete Recipes: Remove recipes that you no longer need. This keeps your recipe book clean and organized.
 
-## Running unit tests
+- State Management: The application uses Angular services for state management. This ensures that the application state is always up-to-date and consistent across different components.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Tech Stack
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Angular 17.3.0
+- Node v21.7.2
+- Tailwind CSS
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## APIs Used
+- Adzuna API
+
+
+## Installation
+
+Initialize project
+
+```bash
+  npm install
+```
+Start the application
+
+```bash
+  npm start
+```
+    

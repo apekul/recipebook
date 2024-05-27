@@ -32,7 +32,7 @@ export class RecipesListComponent {
       this.category = params['category'];
 
       if (!this.category && !this.area) {
-        this.searchTerm = 'Chicken';
+        this.category = 'Chicken';
       }
 
       this.fetchRecipes();
