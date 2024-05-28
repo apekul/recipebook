@@ -1,6 +1,6 @@
 <nav
   #navbar
-  class="bg-white transition-all ease-in duration-500 relative select-none"
+  class="bg-white transition-all ease-in duration-500 relative select-none flex justify-center w-full"
 >
   <div class="flex items-center justify-between w-full padding-x-3">
     <a
@@ -14,6 +14,7 @@
         <a
           href="{{ item.path }}"
           (click)="navigate(item.path, $event)"
+          [ngClass]="{ 'text-blue-500': item.path === currentPage }"
           class="flex font-semibold items-center gap-2 duration-150 ease-in-out hover:text-blue-500"
         >
           <fa-icon [icon]="item.icon"></fa-icon>

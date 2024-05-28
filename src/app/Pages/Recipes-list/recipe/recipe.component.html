@@ -1,11 +1,12 @@
 <li
-  class="bg-white shadow-md rounded-md p-2 md:p-3 flex flex-col justify-between h-full relative"
+  class="bg-white shadow-md rounded-md p-2 md:p-3 flex flex-col justify-between h-full relative cursor-pointer hover:bg-gray-50 transition duration-150"
+  (click)="navigateToRecipeDetails()"
 >
   <fa-icon
     [icon]="faHeart"
     class="absolute top-1 right-2 text-xl text-gray-300 cursor-pointer hover:text-red-500 transition duration-150"
+    (click)="$event.stopPropagation(); addToFavorites(recipe.idMeal)"
   />
-
   <p class="text-start font-bold text-xl pb-2 mr-5">
     {{ recipe.strMeal }}
   </p>

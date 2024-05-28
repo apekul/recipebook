@@ -11,6 +11,9 @@
 
 .padding-x-3 {
   @apply px-[1rem] md:px-[5rem] 2xl:px-[15rem];
-  /* padding-left: 20rem;
-  padding-right: 20rem; */
+}
+.Container {
+  max-width: 1920px; /* Change this to the maximum width you want */
+  margin-left: auto;
+  margin-right: auto;
 }

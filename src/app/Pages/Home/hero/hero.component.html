@@ -1,8 +1,10 @@
 <section
   id="hero"
-  class="flex pt-[1rem] md:pt-[4rem] flex-col md:flex-row items-center xl:items-start"
+  class="flex pt-[1rem] md:pt-[4rem] flex-col md:flex-row items-center justify-center"
 >
-  <div class="relative w-full md:w-[500px] xl:w-[700px] h-[300px] sm:h-[400px]">
+  <div
+    class="relative w-full md:w-[500px] xl:w-[700px] h-[300px] sm:h-[400px] max-w-5xl"
+  >
     <ng-container *ngFor="let image of images; let i = index">
       <img
         [src]="image"
@@ -28,7 +30,7 @@
     </div>
   </div>
   <div
-    class="flex w-full h-full md:h-[400px] md:w-[500px] flex-auto xl:flex-1 flex-col bg-white p-5 md:rounded-tr-md md:rounded-br-[10rem] shadow-md md:justify-between"
+    class="max-w-5xl flex w-full h-full md:h-[400px] md:w-[500px] flex-auto xl:flex-1 flex-col bg-white p-5 md:rounded-tr-md md:rounded-br-[10rem] shadow-md md:justify-between"
   >
     <span>
       <h1 class="text-3xl xl:text-5xl font-bold">Recipe Book</h1>
@@ -43,11 +45,13 @@
     >
       <button
         class="bg-white shadow-md p-3 rounded-md uppercase font-semibold text-blue-500 hover:bg-blue-500 duration-300 ease-in-out hover:text-white"
+        routerLink="/recipes"
       >
         explore
       </button>
       <button
         class="bg-white shadow-md p-3 rounded-md uppercase font-semibold text-orange-500 hover:bg-orange-500 duration-300 ease-in-out hover:text-white"
+        routerLink="/profile"
       >
         contribute
       </button>
