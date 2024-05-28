@@ -39,4 +39,10 @@ Start the application
 ```bash
   npm start
 ```
+
+
+## Screenshots
+
+![screencapture-localhost-4200-home-2024-05-27-22_25_23](https://github.com/apekul/recipebook/assets/22819317/2f5ca1aa-8ced-47ae-888a-7534368ba0a8)
+
     
