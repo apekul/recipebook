@@ -17,7 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   declarations: [AppComponent, Navbar, Footer, RecipeDetailComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' }),
     HomeModule,
     RecipesListModule,
     FontAwesomeModule,
