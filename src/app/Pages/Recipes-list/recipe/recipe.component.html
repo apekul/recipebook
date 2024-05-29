@@ -4,14 +4,14 @@
 >
   <fa-icon
     [icon]="faHeart"
-    class="absolute top-1 right-2 text-xl text-gray-300 cursor-pointer hover:text-red-500 transition duration-150"
-    (click)="$event.stopPropagation(); addToFavorites(recipe.idMeal)"
+    class="absolute top-1 right-2 text-xl cursor-pointer hover:text-red-500 transition duration-150"
+    [class.text-gray-300]="!checkIfFav()"
+    [class.text-red-500]="checkIfFav()"
+    (click)="$event.stopPropagation(); addToFavorites()"
   />
-  <p class="text-start font-bold text-xl pb-2 mr-5">
-    {{ recipe.strMeal }}
-  </p>
+  <p class="text-start font-bold text-xl pb-2 mr-5">{{ recipe.strMeal }}a</p>
   <div>
-    <img [src]="recipe.strMealThumb" class="rounded-md" />
+    <img [src]="recipe.strMealThumb" class="rounded-md object-contain w-full" />
     <div class="py-1">
       <span *ngFor="let star of stars; index as i">
         <fa-icon

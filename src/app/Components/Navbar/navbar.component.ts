@@ -9,8 +9,8 @@ import {
 import { Router, NavigationEnd } from '@angular/router';
 import {
   faHome,
-  faInfoCircle,
-  faEnvelope,
+  faUser,
+  faBookBookmark,
   faBars,
   faXmark,
 } from '@fortawesome/free-solid-svg-icons';
@@ -29,8 +29,8 @@ export class Navbar implements OnInit, AfterViewInit {
   isNavOpen = false; // for mobile
   navItems: { name: string; path: string; icon: any }[] = [
     { name: 'Home', path: '/home', icon: faHome },
-    { name: 'Recipes', path: '/recipes', icon: faEnvelope },
-    { name: 'Profile', path: '/profile', icon: faInfoCircle },
+    { name: 'Recipes', path: '/recipes', icon: faBookBookmark },
+    { name: 'Profile', path: '/profile', icon: faUser },
   ];
 
   @ViewChild('navbar') navbar!: ElementRef;

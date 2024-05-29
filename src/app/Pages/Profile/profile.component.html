@@ -1,9 +1,23 @@
-<section
-  id="profile"
-  class="padding-x-3 min-h-screen bg-blue-100 flex flex-col gap-[4rem]"
->
-  <p>create new recipe</p>
-  <p>my recipes</p>
-  <p>favourites</p>
-  <p>reviewed</p>
+<section id="profile" class="padding-x-3 min-h-screen bg-gray-100 flex py-10">
+  <ul class="bg-white flex flex-col gap-5 px-5 py-2 rounded-l-md border-r-2">
+    <ng-container *ngFor="let item of nav">
+      <li
+        class="cursor-pointer flex gap-2 items-center"
+        (click)="onTabChange(item.text)"
+      >
+        <fa-icon [icon]="item.icon"></fa-icon>
+        <p
+          class="text-blue-500 font-semibold"
+          [class.text-blue-500]="selectedTab === item.text"
+        >
+          {{ item.text }}
+        </p>
+      </li>
+    </ng-container>
+  </ul>
+  <div class="bg-white flex-1 rounded-r-md">
+    <app-user-recipes *ngIf="selectedTab === 'My Recipes'"></app-user-recipes>
+    <app-user-fav *ngIf="selectedTab === 'Favourites'"></app-user-fav>
+    <app-user-reviews *ngIf="selectedTab === 'My Reviews'"></app-user-reviews>
+  </div>
 </section>

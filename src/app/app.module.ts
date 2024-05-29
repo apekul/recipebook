@@ -8,6 +8,7 @@ import { RecipeDetailComponent } from './Pages/Recipe-detail/recipe-detail.compo
 
 import { RouterModule } from '@angular/router';
 import { HomeModule } from './Pages/Home/home.module';
+import { ProfileModule } from './Pages/Profile/profile.module';
 import { RecipesListModule } from './Pages/Recipes-list/recipes-list.module';
 import { routes } from './app.routes';
 
@@ -19,6 +20,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserModule,
     RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' }),
     HomeModule,
+    ProfileModule,
     RecipesListModule,
     FontAwesomeModule,
   ],
