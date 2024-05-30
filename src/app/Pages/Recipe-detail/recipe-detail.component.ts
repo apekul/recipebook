@@ -39,6 +39,8 @@ export class RecipeDetailComponent implements OnInit {
       const img = `https://www.themealdb.com/images/ingredients/${ingredient}.png`;
       if (ingredient && measure) {
         this.ingredients.push({ name: ingredient, measure, img });
+      } else {
+        break;
       }
     }
   }
