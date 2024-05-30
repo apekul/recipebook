@@ -1,10 +1,85 @@
-<section id="user-recipes" class="px-5 pb-5 pt-2">
+<section id="user-recipes" class="px-5 pb-5 pt-2 relative">
   <span class="flex justify-between items-center pb-5">
     <h1 class="font-bold text-3xl">Your Recipes</h1>
     <button
       class="bg-blue-500 px-2 py-1 rounded-md text-white font-semibold hover:bg-blue-400 transition duration-150"
+      (click)="updateToggleForm()"
     >
-      Create Recipe
+      {{ !toggleForm ? 'Create Recipe' : 'Cancel' }}
     </button>
   </span>
+
+  <!-- Form -->
+  <form
+    class="bg-gray-200 gap-5 p-2 w-full flex"
+    [class.hidden]="!toggleForm"
+    [class.visible]="toggleForm"
+    [formGroup]="formGroup"
+    (ngSubmit)="submitForm()"
+  >
+    <!-- Meal Image -->
+    <div class="w-1/3">
+      <img
+        src="https://placehold.co/600x400"
+        alt="Meal Image"
+        class="w-full rounded-md"
+      />
+      <input type="file" />
+    </div>
+    <div class="flex-1 gap-2 flex flex-col">
+      <!-- Meal Name -->
+      <div class="gap-2 flex items-center">
+        <label for="meal">Meal</label>
+        <input
+          id="meal"
+          type="text"
+          formControlName="strMeal"
+          class="px-2 py-1"
+          placeholder="Meal Name"
+        />
+      </div>
+      <!-- Category select -->
+      <div>
+        <label for="category">Category</label>
+        <select id="category" formControlName="strCategory">
+          <option value="">None</option>
+          <option *ngFor="let category of categories" [value]="category">
+            {{ category.strCategory }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Area select -->
+      <div>
+        <label for="area">Area</label>
+        <select id="area" formControlName="strArea">
+          <option value="">None</option>
+          <option *ngFor="let area of areas" [value]="area">
+            {{ area.strArea }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <label for="instructions">Instructions</label>
+        <input
+          id="instructions"
+          type="text"
+          formControlName="strInstructions"
+        />
+      </div>
+
+      <div>
+        <label for="ingredient1">Ingredient 1</label>
+        <input id="ingredient1" type="text" formControlName="strIngredient1" />
+      </div>
+      <div>
+        <label for="measure1">Measure 1</label>
+        <input id="measure1" type="text" formControlName="strMeasure1" />
+      </div>
+      <div class="flex gap-5">
+        <button type="submit">Create</button>
+        <button (click)="updateToggleForm()">Cancel</button>
+      </div>
+    </div>
+  </form>
 </section>

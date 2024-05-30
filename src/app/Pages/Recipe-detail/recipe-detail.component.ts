@@ -27,6 +27,8 @@ export class RecipeDetailComponent implements OnInit {
           this.recipe = data.meals[0];
           this.getIngredients();
         });
+    } else {
+      this.getIngredients();
     }
   }
 

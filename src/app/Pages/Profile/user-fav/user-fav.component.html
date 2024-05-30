@@ -1,6 +1,8 @@
-<section id="user-favorites" class="px-5 pb-5 pt-2">
-  <h1 class="font-bold text-3xl pb-5">Favourites</h1>
-  <ul class="grid grid-cols-3 gap-5 select-none">
+<section id="user-favorites" class="pt-2">
+  <h1 class="font-bold px-5 text-3xl pb-5">Favorites</h1>
+  <ul
+    class="grid h-screen grid-cols-3 px-5 gap-5 select-none overflow-y-scroll pb-5"
+  >
     <ng-container *ngFor="let recipe of getFavorites()">
       <li
         class="flex gap-2 bg-gray-100 p-3 relative rounded-md shadow-md cursor-pointer transition duration-150 hover:shadow-lg"

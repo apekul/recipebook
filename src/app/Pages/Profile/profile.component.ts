@@ -14,7 +14,7 @@ export class ProfileComponent {
   selectedTab: string = 'My Recipes';
   nav = [
     { text: 'My Recipes', icon: faBookBookmark },
-    { text: 'Favourites', icon: faHeart },
+    { text: 'Favorites', icon: faHeart },
     { text: 'My Reviews', icon: faStar },
   ];
   onTabChange(tab: string) {

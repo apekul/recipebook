@@ -62,7 +62,7 @@ export class UserService {
     return this.recipes;
   }
 
-  // Add/Update to rate to Recipe
+  // Add/Update rate to Recipe
   addRating(recipe: any, rating: number) {
     const existingRating = this.ratings.find(
       (r) => r.recipe.idMeal === recipe.idMeal,

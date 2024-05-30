@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
 
@@ -17,6 +17,6 @@ import { UserRecipesComponent } from './user-recipes/user-recipes.component';
     UserReviewsComponent,
     UserRecipesComponent,
   ],
-  imports: [CommonModule, FontAwesomeModule, RouterModule],
+  imports: [CommonModule, FontAwesomeModule, RouterModule, ReactiveFormsModule],
 })
 export class ProfileModule {}
