@@ -5,10 +5,10 @@
     <div class="relative w-full">
       <fa-icon
         [icon]="faHeart"
-        [class.text-gray-300]="!checkIfFav()"
+        class="absolute text-4xl top-1 left-2 hover:text-red-300 transition cursor-pointer duration-150"
+        [class.text-white]="!checkIfFav()"
         [class.text-red-500]="checkIfFav()"
         (click)="addToFavorites()"
-        class="absolute text-4xl top-1 left-2 text-white hover:text-red-300 transition cursor-pointer duration-150"
       ></fa-icon>
       <img
         [src]="recipe.strMealThumb"
