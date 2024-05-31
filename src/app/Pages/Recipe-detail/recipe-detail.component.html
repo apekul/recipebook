@@ -43,16 +43,13 @@
     <h1 class="text-2xl font-bold text-center lg:text-start pb-5">
       Ingredients
     </h1>
-    <ul
-      class="flex gap-5 flex-wrap items-center justify-center lg:justify-start"
-    >
+    <ul class="gap-5 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
       <li
         *ngFor="let ingredient of ingredients"
-        class="flex flex-col items-center"
+        class="flex flex-col items-center bg-gray-200 rounded-md p-2 gap-2"
       >
-        <img [src]="ingredient.img" class="w-32 h-32" />
-        <span>{{ ingredient.name }}</span>
-        <span>{{ ingredient.measure }}</span>
+        <img [src]="ingredient.img" class="w-20 h-20" />
+        <span>{{ ingredient.measure }} {{ ingredient.name }}</span>
       </li>
     </ul>
   </div>

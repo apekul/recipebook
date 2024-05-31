@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { v4 as uuidv4 } from 'uuid';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { categories, areas } from '../../../../assets/dataObject';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,7 +17,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 })
 export class UserRecipesComponent {
   formGroup: FormGroup;
-  toggleForm = true;
+  toggleForm = false;
   categories = categories;
   areas = areas;
   ingredientCount = 1;
@@ -24,7 +29,7 @@ export class UserRecipesComponent {
   ) {
     this.formGroup = this.fb.group({
       idMeal: uuidv4(),
-      strMeal: '',
+      strMeal: ['', Validators.required],
       strCategory: '',
       strArea: '',
       strInstructions: '',
@@ -81,18 +86,34 @@ export class UserRecipesComponent {
     return this.userServices.getRecipes();
   }
 
-  // add new recipe
-  addNewRecipe(recipe: any) {
-    this.userServices.addNewRecipe(recipe);
+  // Update file image
+  onFileChange(event: any) {
+    if (event.target.files && event.target.files.length) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        this.formGroup.patchValue({
+          strMealThumb: reader.result,
+        });
+      };
+    }
   }
 
   // Remove recipe
-  removeRecipe(recipe: any) {
-    this.userServices.removeFromRecipes(recipe);
+  removeRecipe(idMeal: 'string') {
+    this.userServices.removeFromRecipes(idMeal);
   }
 
   // submit form
   submitForm() {
-    console.log('form submited', this.formGroup.value);
+    if (this.formGroup.invalid) {
+      // If the form is invalid, mark all controls as touched so that the error messages are displayed
+      this.formGroup.markAllAsTouched();
+      return;
+    }
+    this.userServices.addNewRecipe(this.formGroup.value);
+    this.updateToggleForm();
   }
 }

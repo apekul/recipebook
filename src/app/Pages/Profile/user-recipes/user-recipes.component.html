@@ -1,8 +1,11 @@
 <section id="user-recipes" class="px-5 pb-5 pt-2 relative">
   <span class="flex justify-between items-center pb-5">
-    <h1 class="font-bold text-3xl">Your Recipes</h1>
+    <h1 class="font-bold text-3xl">My Recipes</h1>
     <button
       class="bg-blue-500 px-2 py-1 rounded-md text-white font-semibold hover:bg-blue-400 transition duration-150"
+      [class.bg-red-500]="toggleForm"
+      [class.hover:bg-red-400]="toggleForm"
+      [class.bg-blue-500]="!toggleForm"
       (click)="updateToggleForm()"
     >
       {{ !toggleForm ? 'Create Recipe' : 'Cancel' }}
@@ -11,122 +14,163 @@
 
   <!-- Form -->
   <form
-    class="bg-gray-200 gap-5 p-2 w-full grid grid-cols-3"
+    class="bg-gray-100 shadow-md gap-2 w-full flex rounded-md"
     [class.hidden]="!toggleForm"
     [class.visible]="toggleForm"
     [formGroup]="formGroup"
     (ngSubmit)="submitForm()"
   >
-    <!-- Meal Image -->
-    <div class="row-span-2">
-      <img
-        src="https://placehold.co/600x400"
-        alt="Meal Image"
-        class="w-full rounded-md"
-      />
-      <input type="file" />
-    </div>
-
-    <!-- Meal Name -->
-    <div class="flex flex-col gap-2">
-      <label for="meal" class=""
-        ><span class="text-red-500">*</span>Meal Name:</label
-      >
-      <input
-        required
-        id="meal"
-        type="text"
-        formControlName="strMeal"
-        class="px-2 py-1 rounded-md focus:outline-none"
-        placeholder="Meal Name"
-      />
-      <!-- Category/Area select -->
-      <div class="flex gap-5">
-        <div class="gap-2 flex items-center">
-          <label for="category">Category</label>
-          <select
-            id="category"
-            formControlName="strCategory"
-            class="px-2 py-1 rounded-md focus:outline-none"
-          >
-            <option value="">None</option>
-            <option
-              *ngFor="let category of categories"
-              [value]="category.strCategory"
-            >
-              {{ category.strCategory }}
-            </option>
-          </select>
-        </div>
-        <div class="gap-2 flex items-center">
-          <label for="area">Area</label>
-          <select
-            id="area"
-            formControlName="strArea"
-            class="px-2 py-1 rounded-md focus:outline-none"
-          >
-            <option value="">None</option>
-            <option *ngFor="let area of areas" [value]="area.strArea">
-              {{ area.strArea }}
-            </option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <!-- Ingredients field -->
-    <div class="flex row-span-2 flex-col gap-2">
-      <label>Ingredients:</label>
-      <div
-        *ngFor="let i of [].constructor(ingredientCount); let index = index"
-        class="flex gap-2"
-      >
-        <input
-          [id]="'ingredient' + (index + 1)"
-          type="text"
-          [placeholder]="'Ingredient ' + (index + 1)"
-          [formControlName]="'strIngredient' + (index + 1)"
-          class="px-2 py-1 w-full rounded-md focus:outline-none"
+    <!-- grid -->
+    <div class="w-2/3 grid grid-cols-2">
+      <!-- Meal Image -->
+      <div class="p-2 col-start-1">
+        <img
+          [src]="
+            formGroup.get('strMealThumb')?.value ||
+            'https://placehold.co/600x400'
+          "
+          alt="Meal Image"
+          class="rounded-md object-cover"
         />
+        <input type="file" (change)="onFileChange($event)" />
+      </div>
+
+      <!-- Meal Name -->
+      <div class="flex flex-col gap-2 p-2 col-start-2">
+        <label for="meal" class=""
+          ><span class="text-red-500">*</span>Meal Name:</label
+        >
         <input
-          [id]="'measure' + (index + 1)"
+          required
+          id="meal"
           type="text"
-          [placeholder]="'Measure ' + (index + 1)"
-          [formControlName]="'strMeasure' + (index + 1)"
-          class="px-2 py-1 w-full rounded-md focus:outline-none"
+          formControlName="strMeal"
+          class="px-2 py-1 rounded-md focus:outline-none"
+          placeholder="Meal Name"
         />
         <div
-          class="text-center w-10 flex text-xl items-center hover:text-red-500"
+          *ngIf="
+            formGroup.get('strMeal')?.touched &&
+            formGroup.get('strMeal')?.invalid
+          "
         >
-          <fa-icon
-            [icon]="faXmark"
-            class="cursor-pointer"
-            (click)="removeIngredient(index)"
-          ></fa-icon>
+          Meal Name is required.
+        </div>
+        <!-- Category/Area select -->
+        <div class="flex flex-col gap-5 mt-5">
+          <div class="gap-2 flex items-center">
+            <label for="category" class="w-20">Category</label>
+            <select
+              id="category"
+              formControlName="strCategory"
+              class="px-2 py-1 rounded-md focus:outline-none"
+            >
+              <option value="">None</option>
+              <option
+                *ngFor="let category of categories"
+                [value]="category.strCategory"
+              >
+                {{ category.strCategory }}
+              </option>
+            </select>
+          </div>
+          <div class="gap-2 flex items-center">
+            <label for="area" class="w-20">Area</label>
+            <select
+              id="area"
+              formControlName="strArea"
+              class="px-2 py-1 rounded-md focus:outline-none"
+            >
+              <option value="">None</option>
+              <option *ngFor="let area of areas" [value]="area.strArea">
+                {{ area.strArea }}
+              </option>
+            </select>
+          </div>
         </div>
       </div>
-      <button
-        *ngIf="ingredientCount < 20"
-        class="bg-blue-500 p-1 text-white rounded-md"
-        (click)="addIngredient()"
-      >
-        Add Ingredient
-      </button>
-    </div>
 
-    <!-- Instruction -->
-    <div class="flex flex-col col-start-2 col-span-1 min-h-[15rem]">
-      <label for="instructions">Instructions</label>
-      <textarea
-        id="instructions"
-        class="w-full h-full p-2 resize-y"
-        type="text"
-        formControlName="strInstructions"
-      ></textarea>
+      <!-- Instruction -->
+      <div
+        class="flex flex-col min-h-[10rem] p-2 col-start-1 row-start-2 col-span-4"
+      >
+        <label for="instructions"
+          ><span class="text-red-500">*</span>Instructions</label
+        >
+        <textarea
+          id="instructions"
+          class="w-full min-h-[10rem] max-h-[25rem] p-2 resize-y rounded-md focus:outline-none"
+          type="text"
+          required
+          formControlName="strInstructions"
+        ></textarea>
+      </div>
     </div>
-    <div>
-      <button>Cancel</button>
-      <button (click)="submitForm()">Create</button>
+    <!-- Ingredients field -->
+    <div class="flex flex-col justify-between w-1/3">
+      <div class="flex flex-col gap-2 p-2 col-start-5 row-span-full">
+        <label>Ingredients:</label>
+        <div class="overflow-y-auto max-h-[20rem] flex-col flex gap-2 pr-5">
+          <div
+            *ngFor="let i of [].constructor(ingredientCount); let index = index"
+            class="flex gap-2"
+          >
+            <input
+              [id]="'ingredient' + (index + 1)"
+              type="text"
+              [placeholder]="'Ingredient ' + (index + 1)"
+              [formControlName]="'strIngredient' + (index + 1)"
+              class="px-2 py-1 w-full rounded-md focus:outline-none"
+            />
+            <input
+              [id]="'measure' + (index + 1)"
+              type="text"
+              [placeholder]="'Measure ' + (index + 1)"
+              [formControlName]="'strMeasure' + (index + 1)"
+              class="px-2 py-1 w-full rounded-md focus:outline-none"
+            />
+            <div
+              class="text-center w-10 flex text-xl items-center hover:text-red-500"
+            >
+              <fa-icon
+                [icon]="faXmark"
+                class="cursor-pointer"
+                (click)="removeIngredient(index)"
+              ></fa-icon>
+            </div>
+          </div>
+        </div>
+        <button
+          *ngIf="ingredientCount < 20"
+          type="button"
+          class="bg-blue-500 p-1 text-white rounded-md"
+          (click)="addIngredient()"
+        >
+          Add Ingredient
+        </button>
+      </div>
+      <div class="flex gap-3 items-end justify-end p-2">
+        <button
+          type="submit"
+          class="p-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-400 transition duration-150"
+        >
+          Create
+        </button>
+      </div>
     </div>
   </form>
+
+  <!-- recipes -->
+  <ul class="grid grid-cols-4 gap-2">
+    <li *ngFor="let recipe of getRecipes()" class="bg-red-200">
+      <img
+        [src]="recipe.strMealthumb || 'https://placehold.co/600x400'"
+        class="rounded-md"
+      />
+      <p>{{ recipe.strMeal }}</p>
+      <button type="button" (click)="removeRecipe(recipe.idMeal)">
+        Remove Recipe
+      </button>
+    </li>
+  </ul>
 </section>

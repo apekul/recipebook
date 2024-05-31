@@ -53,8 +53,8 @@ export class UserService {
     this.saveState();
   }
   // Remove from Recipes
-  removeFromRecipes(recipe: any) {
-    this.recipes = this.recipes.filter((rec) => rec.idMeal !== recipe.idMeal);
+  removeFromRecipes(idMeal: string) {
+    this.recipes = this.recipes.filter((rec) => rec.idMeal !== idMeal);
     this.saveState();
   }
   // Get Recipes
