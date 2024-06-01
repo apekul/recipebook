@@ -1,15 +1,21 @@
 <section id="user-favorites" class="pt-2">
-  <span class="fle items-center">
-    <h1 class="font-bold px-5 text-3xl pb-5">Favorites</h1>
-    <input placeholder="Search favourites" />
+  <span class="flex items-center justify-between gap-10 pb-5 px-5">
+    <h1 class="font-bold text-3xl">Favorites</h1>
+    <input
+      #searchInput
+      placeholder="Search favourites"
+      type="text"
+      class="bg-gray-200 rounded-full w-[25rem] px-5 py-2"
+      (input)="filterFavorites()"
+    />
   </span>
 
   <ul
     class="grid h-screen grid-cols-3 px-5 gap-5 select-none overflow-y-scroll pb-5"
   >
-    <ng-container *ngFor="let recipe of getFavorites()">
+    <ng-container *ngFor="let recipe of filteredFavorites">
       <li
-        class="flex gap-2 bg-gray-100 p-3 relative rounded-md shadow-md cursor-pointer transition duration-150 hover:shadow-lg"
+        class="flex h-auto max-h-[8rem] gap-2 bg-gray-100 p-3 relative rounded-md shadow-md cursor-pointer transition duration-150 hover:shadow-lg"
         (click)="navigateToRecipeDetails(recipe)"
       >
         <fa-icon

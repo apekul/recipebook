@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
@@ -9,14 +9,32 @@ import { Router } from '@angular/router';
   styleUrl: './user-fav.component.css',
 })
 export class UserFavComponent {
+  @ViewChild('searchInput') searchInput!: ElementRef;
   faHeart = faHeart;
+  favorites: any[] = [];
+  filteredFavorites: any[] = [];
+
   constructor(
     private userServices: UserService,
     private router: Router,
-  ) {}
+  ) {
+    this.favorites = this.getFavorites();
+    this.filteredFavorites = this.favorites;
+  }
 
   getFavorites() {
     return this.userServices.getFavorites();
+  }
+
+  filterFavorites() {
+    const searchTerm = this.searchInput.nativeElement.value;
+    if (!searchTerm) {
+      this.filteredFavorites = this.favorites;
+    } else {
+      this.filteredFavorites = this.favorites.filter((favorite) =>
+        favorite.strMeal.toLowerCase().includes(searchTerm.toLowerCase()),
+      );
+    }
   }
 
   navigateToRecipeDetails(recipe: any) {
