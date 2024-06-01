@@ -1,0 +1,196 @@
+<form
+  class="bg-gray-100 shadow-md gap-2 w-full flex rounded-md mb-5"
+  [formGroup]="formGroup"
+  (ngSubmit)="submitForm()"
+>
+  <!-- grid -->
+  <div class="flex flex-col">
+    <!-- Meal Image -->
+    <div class="p-2 col-start-1">
+      <img
+        *ngIf="formGroup.get('strMealThumb')?.value"
+        [src]="formGroup.get('strMealThumb')?.value"
+        class="rounded-md w-full h-[200px] object-cover"
+        alt="Meal Image"
+      />
+      <div
+        *ngIf="!formGroup.get('strMealThumb')?.value"
+        class="w-full h-[200px] bg-gray-200 rounded-md flex items-center justify-center shadow-md"
+      >
+        <fa-icon [icon]="faShrimp" class="text-gray-300 text-5xl"></fa-icon>
+      </div>
+      <input type="file" (change)="onFileChange($event)" />
+    </div>
+
+    <!-- Meal Name -->
+    <div class="flex flex-col gap-2 p-2 col-start-2">
+      <label for="meal" class=""
+        ><span class="text-red-500">*</span>Meal Name:
+        <span
+          *ngIf="
+            formGroup.get('strMeal')?.touched &&
+            formGroup.get('strMeal')?.invalid
+          "
+          class="text-red-500"
+        >
+          is required.
+        </span></label
+      >
+      <input
+        required
+        id="meal"
+        type="text"
+        formControlName="strMeal"
+        class="px-2 py-1 rounded-md focus:outline-none"
+        [class.invalid-input]="
+          formGroup.get('strMeal')?.touched && formGroup.get('strMeal')?.invalid
+        "
+        placeholder="Meal Name"
+      />
+
+      <!-- Category/Area select -->
+      <div class="flex flex-col gap-5 mt-5">
+        <div class="gap-2 flex items-center">
+          <label for="category" class="w-20">Category</label>
+          <select
+            id="category"
+            formControlName="strCategory"
+            class="px-2 py-1 rounded-md focus:outline-none"
+          >
+            <option value="">None</option>
+            <option
+              *ngFor="let category of categories"
+              [value]="category.strCategory"
+            >
+              {{ category.strCategory }}
+            </option>
+          </select>
+        </div>
+        <div class="gap-2 flex items-center">
+          <label for="area" class="w-20">Area</label>
+          <select
+            id="area"
+            formControlName="strArea"
+            class="px-2 py-1 rounded-md focus:outline-none"
+          >
+            <option value="">None</option>
+            <option *ngFor="let area of areas" [value]="area.strArea">
+              {{ area.strArea }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Instruction -->
+  <div class="flex w-full h-[30rem]">
+    <div class="flex flex-col min-h-[10rem] w-2/3 p-2">
+      <label for="instructions" class="pb-2"
+        ><span class="text-red-500">*</span>Instruction:
+        <span
+          *ngIf="
+            formGroup.get('strInstructions')?.touched &&
+            formGroup.get('strInstructions')?.invalid
+          "
+          class="text-red-500"
+        >
+          is required.
+        </span></label
+      >
+      <textarea
+        id="instructions"
+        class="w-full min-h-[25rem] max-h-[25rem] p-2 resize-y rounded-md focus:outline-none"
+        type="text"
+        [class.invalid-input]="
+          formGroup.get('strInstructions')?.touched &&
+          formGroup.get('strInstructions')?.invalid
+        "
+        required
+        formControlName="strInstructions"
+      ></textarea>
+    </div>
+
+    <div class="flex flex-col h-full justify-between">
+      <!-- Ingredients -->
+      <div class="flex flex-col gap-2 w-full h-full justify-between p-2">
+        <div class="flex flex-col gap-2">
+          <label
+            ><span class="text-red-500">*</span>Ingredients:
+            <span
+              *ngIf="
+                formGroup.get('strIngredient1')?.touched &&
+                formGroup.get('strIngredient1')?.invalid
+              "
+              class="text-red-500"
+            >
+              1 ingredient is required
+            </span>
+          </label>
+          <div class="overflow-y-auto max-h-[19rem] flex-col flex gap-2 pr-5">
+            <div
+              *ngFor="
+                let i of [].constructor(ingredientCount);
+                let index = index
+              "
+              class="flex gap-2"
+            >
+              <input
+                [id]="'ingredient' + (index + 1)"
+                type="text"
+                [class.invalid-input]="
+                  formGroup.get('strIngredient1')?.touched &&
+                  formGroup.get('strIngredient1')?.invalid &&
+                  index === 0
+                "
+                [required]="index === 0"
+                [placeholder]="'Ingredient ' + (index + 1)"
+                [formControlName]="'strIngredient' + (index + 1)"
+                class="px-2 py-1 w-full rounded-md focus:outline-none"
+              />
+              <input
+                [id]="'measure' + (index + 1)"
+                type="text"
+                [required]="index === 0"
+                [class.invalid-input]="
+                  formGroup.get('strMeasure1')?.touched &&
+                  formGroup.get('strMeasure1')?.invalid &&
+                  index === 0
+                "
+                [placeholder]="'Measure ' + (index + 1)"
+                [formControlName]="'strMeasure' + (index + 1)"
+                class="px-2 py-1 w-full rounded-md focus:outline-none"
+              />
+              <div
+                class="text-center w-10 flex text-xl items-center hover:text-red-500"
+              >
+                <fa-icon
+                  [icon]="faXmark"
+                  class="cursor-pointer"
+                  (click)="removeIngredient(index)"
+                ></fa-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button
+          *ngIf="ingredientCount < 20"
+          type="button"
+          class="bg-blue-500 p-1 my-5 text-white rounded-md hover:bg-blue-400 transition duration-150"
+          (click)="addIngredient()"
+        >
+          Add Ingredient
+        </button>
+      </div>
+      <!-- Submit -->
+      <div class="flex px-2 py-1 justify-end">
+        <button
+          type="submit"
+          class="p-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-400 transition duration-150"
+        >
+          Create
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

@@ -9,6 +9,7 @@ import { ProfileComponent } from './profile.component';
 import { UserFavComponent } from './user-fav/user-fav.component';
 import { UserReviewsComponent } from './user-reviews/user-reviews.component';
 import { UserRecipesComponent } from './user-recipes/user-recipes.component';
+import { RecipeFormComponent } from './user-recipes/recipe-form/recipe-form.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { UserRecipesComponent } from './user-recipes/user-recipes.component';
     UserFavComponent,
     UserReviewsComponent,
     UserRecipesComponent,
+    RecipeFormComponent,
   ],
   imports: [CommonModule, FontAwesomeModule, RouterModule, ReactiveFormsModule],
 })

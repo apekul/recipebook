@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { v4 as uuidv4 } from 'uuid';
-import {
-  FormGroup,
-  FormBuilder,
-  FormControl,
-  Validators,
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { categories, areas } from '../../../../assets/dataObject';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faShrimp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-recipes',
@@ -21,7 +16,8 @@ export class UserRecipesComponent {
   categories = categories;
   areas = areas;
   ingredientCount = 1;
-  faXmark = faXmark;
+  faTrash = faTrash;
+  faShrimp = faShrimp;
 
   constructor(
     private userServices: UserService,
@@ -32,41 +28,11 @@ export class UserRecipesComponent {
       strMeal: ['', Validators.required],
       strCategory: '',
       strArea: '',
-      strInstructions: '',
+      strInstructions: ['', Validators.required],
       strMealThumb: null,
-      strIngredient1: '',
-      strMeasure1: '',
+      strIngredient1: ['', Validators.required],
+      strMeasure1: ['', Validators.required],
     });
-  }
-  addIngredient() {
-    this.ingredientCount++;
-    this.formGroup.addControl(
-      `strIngredient${this.ingredientCount}`,
-      new FormControl(''),
-    );
-    this.formGroup.addControl(
-      `strMeasure${this.ingredientCount}`,
-      new FormControl(''),
-    );
-  }
-
-  removeIngredient(index: number) {
-    // Shift up all the ingredients and measures after the one removed
-    for (let i = index; i < this.ingredientCount - 1; i++) {
-      this.formGroup.controls[`strIngredient${i + 1}`].setValue(
-        this.formGroup.controls[`strIngredient${i + 2}`].value,
-      );
-      this.formGroup.controls[`strMeasure${i + 1}`].setValue(
-        this.formGroup.controls[`strMeasure${i + 2}`].value,
-      );
-    }
-
-    // Remove the last ingredient and measure
-    this.formGroup.removeControl(`strIngredient${this.ingredientCount}`);
-    this.formGroup.removeControl(`strMeasure${this.ingredientCount}`);
-
-    // Decrease the ingredient count
-    this.ingredientCount--;
   }
 
   updateToggleForm() {
@@ -75,6 +41,7 @@ export class UserRecipesComponent {
       idMeal: uuidv4(),
       strMeal: '',
       strCategory: '',
+      strArea: '',
       strInstructions: '',
       strMealThumb: null,
     });
@@ -86,34 +53,8 @@ export class UserRecipesComponent {
     return this.userServices.getRecipes();
   }
 
-  // Update file image
-  onFileChange(event: any) {
-    if (event.target.files && event.target.files.length) {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-
-      reader.onload = () => {
-        this.formGroup.patchValue({
-          strMealThumb: reader.result,
-        });
-      };
-    }
-  }
-
   // Remove recipe
   removeRecipe(idMeal: 'string') {
     this.userServices.removeFromRecipes(idMeal);
-  }
-
-  // submit form
-  submitForm() {
-    if (this.formGroup.invalid) {
-      // If the form is invalid, mark all controls as touched so that the error messages are displayed
-      this.formGroup.markAllAsTouched();
-      return;
-    }
-    this.userServices.addNewRecipe(this.formGroup.value);
-    this.updateToggleForm();
   }
 }
