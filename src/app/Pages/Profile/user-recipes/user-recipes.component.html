@@ -26,18 +26,18 @@
     <li *ngFor="let recipe of getRecipes()" class="rounded-md">
       <div class="relative">
         <img
-          *ngIf="recipe.strMealthumb"
-          [src]="recipe.strMealthumb"
+          *ngIf="recipe.strMealThumb"
+          [src]="recipe.strMealThumb"
           class="rounded-md w-full h-[200px] object-cover"
         />
         <div
-          *ngIf="!recipe.strMealthumb"
+          *ngIf="!recipe.strMealThumb"
           class="w-full h-[200px] bg-gray-200 rounded-md flex items-center justify-center shadow-md"
         >
           <fa-icon [icon]="faShrimp" class="text-gray-300 text-5xl"></fa-icon>
         </div>
         <fa-icon
-          class="cursor-pointer hover:text-red-500 transition duration-150 absolute bottom-1 right-2"
+          class="cursor-pointer text-red-400 hover:text-red-500 transition duration-150 absolute bottom-1 right-2"
           [icon]="faTrash"
           (click)="removeRecipe(recipe.idMeal)"
         ></fa-icon>

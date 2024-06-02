@@ -1,14 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { UserService } from '../../../../services/user.service';
 import { categories, areas } from '../../../../../assets/dataObject';
-import {
-  FormBuilder,
-  FormControl,
-  Validators,
-  FormGroup,
-} from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { faXmark, faShrimp } from '@fortawesome/free-solid-svg-icons';
-
+import imageCompression from 'browser-image-compression';
 @Component({
   selector: 'app-recipe-form',
   templateUrl: './recipe-form.component.html',
@@ -36,17 +31,29 @@ export class RecipeFormComponent {
   }
 
   // Update file image
-  onFileChange(event: any) {
+  async onFileChange(event: any) {
     if (event.target.files && event.target.files.length) {
       const file = event.target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
 
-      reader.onload = () => {
-        this.formGroup.patchValue({
-          strMealThumb: reader.result,
-        });
+      const options = {
+        maxSizeMB: 1, // (max file size in MB)
+        maxWidthOrHeight: 1920, // compress the image if it's width or height is greater than this value
+        useWebWorker: true,
       };
+
+      try {
+        const compressedFile = await imageCompression(file, options);
+        const reader = new FileReader();
+        reader.readAsDataURL(compressedFile);
+
+        reader.onload = () => {
+          this.formGroup.patchValue({
+            strMealThumb: reader.result,
+          });
+        };
+      } catch (error) {
+        console.error('Error occurred while compressing the image', error);
+      }
     }
   }
 
