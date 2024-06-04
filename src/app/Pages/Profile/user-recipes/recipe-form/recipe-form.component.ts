@@ -4,6 +4,7 @@ import { categories, areas } from '../../../../../assets/dataObject';
 import { FormControl, FormGroup } from '@angular/forms';
 import { faXmark, faShrimp } from '@fortawesome/free-solid-svg-icons';
 import imageCompression from 'browser-image-compression';
+
 @Component({
   selector: 'app-recipe-form',
   templateUrl: './recipe-form.component.html',
