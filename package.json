@@ -1,13 +1,12 @@
 {
   "name": "firstangular",
-  "version": "0.0.0",
-  "scripts": {
+  "version": "0.0.0","scripts": {
     "lint": "eslint \"src/**/*.ts\"",
     "ng": "ng",
     "start": "ng serve",
     "prebuild": "npm install",
     "build": "ng build",
-    "postbuild": "copy _redirects dist\\firstangular\\browser\\_redirects",
+    "postbuild": "cp _redirects dist/firstangular/browser/_redirects",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
