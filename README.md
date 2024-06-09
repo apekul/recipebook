@@ -23,10 +23,6 @@ This is a Recipe Book application built with Angular. The application allows use
 - Tailwind CSS
 
 
-## APIs Used
-- Adzuna API
-
-
 ## Installation
 
 Initialize project
