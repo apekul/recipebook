@@ -23,7 +23,11 @@
 
   <!-- recipes -->
   <ul class="grid grid-cols-4 gap-5">
-    <li *ngFor="let recipe of getRecipes()" class="rounded-md bg-red-200">
+    <li
+      *ngFor="let recipe of getRecipes()"
+      class="rounded-md cursor-pointer"
+      (click)="navigateToRecipeDetails(recipe)"
+    >
       <div class="relative">
         <img
           *ngIf="recipe.strMealThumb"
@@ -39,7 +43,7 @@
         <fa-icon
           class="cursor-pointer text-red-400 hover:text-red-500 transition duration-150 absolute bottom-1 right-2"
           [icon]="faTrash"
-          (click)="removeRecipe(recipe.idMeal)"
+          (click)="$event.stopPropagation(); removeRecipe(recipe.idMeal)"
         ></fa-icon>
       </div>
       <p class="truncate">{{ recipe.strMeal }}</p>

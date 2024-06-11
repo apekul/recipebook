@@ -2,7 +2,6 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-user-fav',

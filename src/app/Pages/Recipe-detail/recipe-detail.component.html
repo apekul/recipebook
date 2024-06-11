@@ -11,17 +11,24 @@
         (click)="addToFavorites()"
       ></fa-icon>
       <img
+        *ngIf="recipe.strMealThumb"
         [src]="recipe.strMealThumb"
         alt="recipe.strMeal"
         class="object-cover w-full h-[35rem] rounded-md shadow-md"
       />
+      <div
+        *ngIf="!recipe.strMealThumb"
+        class="w-full h-[35rem] bg-gray-200 rounded-md flex items-center justify-center shadow-md"
+      >
+        <fa-icon [icon]="faShrimp" class="text-gray-300 text-5xl"></fa-icon>
+      </div>
     </div>
     <span class="w-full">
       <span class="flex items-center flex-col lg:flex-row gap-5">
         <h1 class="text-2xl font-bold text-center lg:text-start">
           {{ recipe.strMeal }}
         </h1>
-        <span>
+        <span class="w-24 h-auto">
           <fa-icon
             [icon]="faStar"
             *ngFor="let star of stars; index as i"
@@ -48,7 +55,13 @@
         *ngFor="let ingredient of ingredients"
         class="flex flex-col items-center bg-gray-200 rounded-md p-2 gap-2"
       >
-        <img [src]="ingredient.img" class="w-20 h-20" />
+        <img *ngIf="ingredient.img" [src]="ingredient.img" class="w-20 h-20" />
+        <div
+          *ngIf="!ingredient.img"
+          class="w-20 h-20 bg-gray-200 rounded-md flex items-center justify-center shadow-md"
+        >
+          <fa-icon [icon]="faShrimp" class="text-gray-300 text-5xl"></fa-icon>
+        </div>
         <span>{{ ingredient.measure }} {{ ingredient.name }}</span>
       </li>
     </ul>

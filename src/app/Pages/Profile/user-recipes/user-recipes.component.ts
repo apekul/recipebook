@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { categories, areas } from '../../../../assets/dataObject';
 import { faTrash, faShrimp } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-recipes',
@@ -22,6 +23,7 @@ export class UserRecipesComponent {
   constructor(
     private userServices: UserService,
     private fb: FormBuilder,
+    private router: Router,
   ) {
     this.formGroup = this.fb.group({
       idMeal: uuidv4(),
@@ -56,5 +58,11 @@ export class UserRecipesComponent {
   // Remove recipe
   removeRecipe(idMeal: 'string') {
     this.userServices.removeFromRecipes(idMeal);
+  }
+
+  navigateToRecipeDetails(recipe: any) {
+    this.router.navigate(['/recipe', recipe.idMeal], {
+      state: { recipe: recipe },
+    });
   }
 }

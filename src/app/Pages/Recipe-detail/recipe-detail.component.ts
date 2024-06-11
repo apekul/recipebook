@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faStar, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faHeart, faShrimp } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-recipe-detail',
@@ -11,6 +11,7 @@ export class RecipeDetailComponent implements OnInit {
   ingredients: { name: string; measure: string; img: string }[] = [];
   faStar = faStar;
   faHeart = faHeart;
+  faShrimp = faShrimp;
   stars = Array(5).fill(0);
 
   constructor(private userServices: UserService) {
@@ -35,6 +36,7 @@ export class RecipeDetailComponent implements OnInit {
   getIngredients() {
     for (let i = 1; i <= 20; i++) {
       const ingredient = this.recipe[`strIngredient${i}`];
+      console.log(ingredient);
       const measure = this.recipe[`strMeasure${i}`];
       const img = `https://www.themealdb.com/images/ingredients/${ingredient}.png`;
       if (ingredient && measure) {
