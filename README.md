@@ -40,7 +40,11 @@ Start the application
 
 
 ## Screenshots
-
+- Homepage
 ![screencapture-localhost-4200-home-2024-05-27-22_25_23](https://github.com/apekul/recipebook/assets/22819317/2f5ca1aa-8ced-47ae-888a-7534368ba0a8)
-
-    
+- Recipe page
+![recipes](https://github.com/apekul/recipebook/assets/22819317/e4a1b3a2-25ce-46f7-a771-683f2df7285c)
+- Profile page creating new recipes
+![profile-create](https://github.com/apekul/recipebook/assets/22819317/86aab3ba-b987-4bf1-91e2-73dea0fb3ac7)
+- Favorite list
+![favorites](https://github.com/apekul/recipebook/assets/22819317/56fb2fe0-d42f-4bfe-931f-e9787f7e3d30)
