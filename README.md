@@ -17,11 +17,13 @@ This is a Recipe Book application built with Angular. The application allows use
 
 
 ## Tech Stack
-
+  
 - Angular 17.3.0
 - Node v21.7.2
 - Tailwind CSS
 
+## Demo
+[Demo link](https://recipebookdemo.netlify.app/)
 
 ## Installation
 
