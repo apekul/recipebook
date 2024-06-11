@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { UserService } from '../../../services/user.service';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faShrimp } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class UserFavComponent {
   @ViewChild('searchInput') searchInput!: ElementRef;
   faHeart = faHeart;
+  faShrimp = faShrimp;
   favorites: any[] = [];
   filteredFavorites: any[] = [];
 

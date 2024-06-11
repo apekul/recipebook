@@ -24,9 +24,16 @@
           (click)="$event.stopPropagation(); removeFromFavorites(recipe)"
         ></fa-icon>
         <img
+          *ngIf="recipe.strMealThumb"
           [src]="recipe.strMealThumb"
           class="w-20 h-20 object-cover rounded-md"
         />
+        <div
+          *ngIf="!recipe.strMealThumb"
+          class="w-20 h-20 bg-gray-200 rounded-md flex items-center justify-center shadow-md"
+        >
+          <fa-icon [icon]="faShrimp" class="text-gray-300 text-5xl"></fa-icon>
+        </div>
         <p class="font-semibold flex-wrap text-xl pr-20">
           {{ recipe.strMeal }}
         </p>

@@ -25,7 +25,7 @@
   <ul class="grid grid-cols-4 gap-5">
     <li
       *ngFor="let recipe of getRecipes()"
-      class="rounded-md cursor-pointer"
+      class="rounded-md cursor-pointer hover:shadow-md transition duration-150"
       (click)="navigateToRecipeDetails(recipe)"
     >
       <div class="relative">
@@ -46,7 +46,7 @@
           (click)="$event.stopPropagation(); removeRecipe(recipe.idMeal)"
         ></fa-icon>
       </div>
-      <p class="truncate">{{ recipe.strMeal }}</p>
+      <p class="truncate px-2">{{ recipe.strMeal }}</p>
     </li>
   </ul>
 </section>
