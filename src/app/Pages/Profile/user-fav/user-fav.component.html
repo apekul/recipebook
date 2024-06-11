@@ -11,17 +11,17 @@
   </span>
 
   <ul
-    class="grid h-screen grid-cols-3 px-5 gap-5 select-none overflow-y-scroll pb-5"
+    class="grid max-h-screen grid-cols-3 auto-rows-auto px-5 gap-5 select-none overflow-y-auto pb-5"
   >
     <ng-container *ngFor="let recipe of filteredFavorites">
       <li
-        class="flex h-auto max-h-[8rem] gap-2 bg-gray-100 p-3 relative rounded-md shadow-md cursor-pointer transition duration-150 hover:shadow-lg"
+        class="flex max-h-[8rem] gap-2 bg-gray-100 p-3 relative rounded-md shadow-md cursor-pointer transition duration-150 hover:shadow-lg"
         (click)="navigateToRecipeDetails(recipe)"
       >
         <fa-icon
           [icon]="faHeart"
           class="text-red-500 absolute text-2xl top-1 right-2 hover:text-red-300 cursor-pointer transition duration-150"
-          (click)="removeFromFavorites(recipe)"
+          (click)="$event.stopPropagation(); removeFromFavorites(recipe)"
         ></fa-icon>
         <img
           [src]="recipe.strMealThumb"
