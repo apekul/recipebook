@@ -1,17 +1,19 @@
 <section id="user-favorites" class="pt-2">
-  <span class="flex items-center justify-between gap-10 pb-5 px-5">
+  <span
+    class="flex flex-col lg:flex-row items-center justify-between gap-10 pb-5 px-5"
+  >
     <h1 class="font-bold text-3xl">Favorites</h1>
     <input
       #searchInput
       placeholder="Search favourites"
       type="text"
-      class="bg-gray-200 rounded-full w-[25rem] px-5 py-2"
+      class="bg-gray-200 rounded-full w-full lg:w-[25rem] px-5 py-2"
       (input)="filterFavorites()"
     />
   </span>
 
   <ul
-    class="grid max-h-screen grid-cols-3 auto-rows-auto px-5 gap-5 select-none overflow-y-auto pb-5"
+    class="grid max-h-screen grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-auto px-5 gap-5 select-none overflow-y-auto pb-5"
   >
     <ng-container *ngFor="let recipe of filteredFavorites">
       <li
@@ -34,7 +36,7 @@
         >
           <fa-icon [icon]="faShrimp" class="text-gray-300 text-5xl"></fa-icon>
         </div>
-        <p class="font-semibold flex-wrap text-xl pr-20">
+        <p class="font-semibold line-clamp-2 text-base lg:text-xl pr-10">
           {{ recipe.strMeal }}
         </p>
       </li>

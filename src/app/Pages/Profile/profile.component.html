@@ -10,9 +10,12 @@
         class="cursor-pointer flex gap-2 items-center"
         (click)="onTabChange(item.text)"
       >
-        <fa-icon [icon]="item.icon"></fa-icon>
+        <fa-icon
+          [icon]="item.icon"
+          [class.text-blue-500]="selectedTab === item.text"
+        ></fa-icon>
         <p
-          class="font-semibold hover:text-blue-400 transition duration-150"
+          class="font-semibold hover:text-blue-400 transition duration-150 hidden lg:block"
           [class.text-blue-500]="selectedTab === item.text"
         >
           {{ item.text }}

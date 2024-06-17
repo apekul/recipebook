@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
 export class UserService {
   private favorites: any[] = [];
   private recipes: any[] = [];
-  private ratings: { recipe: any; rating: number }[] = [];
+  private ratings: { recipeID: any; rating: number }[] = []; // Global ratings
+  private userRatings: { recipeID: any; rating: number }[] = []; // User ratings
 
   constructor() {
     this.loadState();
@@ -62,16 +63,26 @@ export class UserService {
     return this.recipes;
   }
 
-  // Add/Update rate to Recipe
-  addRating(recipe: any, rating: number) {
-    const existingRating = this.ratings.find(
-      (r) => r.recipe.idMeal === recipe.idMeal,
+  //  store user ratings
+  //  store global ratings
+  //  update user ratings with specific id
+  //  merger user ratings with global ratings
+  //  display global ratings in recipe details
+  //  display user ratings in user profile
+
+  // Add/Update rating in userRatings
+  addUserRating(recipeID: any, rating: number) {
+    const existingRating = this.userRatings.find(
+      (r) => r.recipeID === recipeID,
     );
     if (existingRating) {
       existingRating.rating = rating;
     } else {
-      this.ratings.push({ recipe, rating });
+      this.userRatings.push({ recipeID, rating });
     }
     this.saveState();
   }
+
+  // return rating for a specific recipe
+  // return userRating for profile page
 }
