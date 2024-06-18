@@ -36,7 +36,6 @@ export class RecipeDetailComponent implements OnInit {
   getIngredients() {
     for (let i = 1; i <= 20; i++) {
       const ingredient = this.recipe[`strIngredient${i}`];
-      console.log(ingredient);
       const measure = this.recipe[`strMeasure${i}`];
       const img = `https://www.themealdb.com/images/ingredients/${ingredient}.png`;
       if (ingredient && measure) {

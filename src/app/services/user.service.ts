@@ -6,8 +6,9 @@ import { Injectable } from '@angular/core';
 export class UserService {
   private favorites: any[] = [];
   private recipes: any[] = [];
-  private ratings: { recipeID: any; rating: number }[] = []; // Global ratings
-  private userRatings: { recipeID: any; rating: number }[] = []; // User ratings
+  // private ratings: { recipeID: any; rating: number }[] = []; // Global ratings
+  private userRatings: { recipeID: any; rating: number; comment: string }[] =
+    []; // User ratings
 
   constructor() {
     this.loadState();
@@ -17,18 +18,18 @@ export class UserService {
   loadState() {
     const favorites = localStorage.getItem('favorites');
     const recipes = localStorage.getItem('recipes');
-    const ratings = localStorage.getItem('ratings');
+    const userRatings = localStorage.getItem('userRatings');
 
     if (favorites) this.favorites = JSON.parse(favorites);
     if (recipes) this.recipes = JSON.parse(recipes);
-    if (ratings) this.ratings = JSON.parse(ratings);
+    if (userRatings) this.userRatings = JSON.parse(userRatings);
   }
 
   // Save the state to local storage
   saveState() {
     localStorage.setItem('favorites', JSON.stringify(this.favorites));
     localStorage.setItem('recipes', JSON.stringify(this.recipes));
-    localStorage.setItem('ratings', JSON.stringify(this.ratings));
+    localStorage.setItem('userRatings', JSON.stringify(this.userRatings));
   }
 
   // Add to favorites
@@ -71,16 +72,20 @@ export class UserService {
   //  display user ratings in user profile
 
   // Add/Update rating in userRatings
-  addUserRating(recipeID: any, rating: number) {
+  addUserRating(recipeID: any, rating: number, comment: string) {
     const existingRating = this.userRatings.find(
       (r) => r.recipeID === recipeID,
     );
     if (existingRating) {
       existingRating.rating = rating;
     } else {
-      this.userRatings.push({ recipeID, rating });
+      this.userRatings.push({ recipeID, rating, comment });
     }
     this.saveState();
+  }
+
+  getReview(recipeID: any) {
+    return this.userRatings.filter((r) => r.recipeID === recipeID);
   }
 
   // return rating for a specific recipe

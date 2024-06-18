@@ -1,0 +1,35 @@
+<section class="flex flex-col gap-5">
+  <h1 class="text-2xl font-bold text-center lg:text-start pb-5">Reviews</h1>
+
+  <!-- Rate Stats -->
+  <div>
+    <p>Rating stars</p>
+    <p>How many per review</p>
+  </div>
+
+  <!-- Toggle form -->
+  <div class="w-full flex justify-center">
+    <button
+      class="bg-blue-500 rounded-md w-52 py-2 text-white font-bold uppercase hover:bg-blue-400 transition duration-150"
+    >
+      Create Review
+    </button>
+  </div>
+
+  <!-- New Review Form -->
+  <form class="hidden">
+    <input type="text" placeholder="Review..." />
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- Review List -->
+  <ul class="bg-red-200">
+    <li class="flex gap-5">
+      <p>Date</p>
+      <p>Stars</p>
+      <p>Guest</p>
+      <p>UserIcon</p>
+      <p>review</p>
+    </li>
+  </ul>
+</section>
