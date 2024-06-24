@@ -50,16 +50,18 @@
     <ul class="gap-5 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
       <li
         *ngFor="let ingredient of ingredients"
-        class="flex flex-col items-center bg-gray-200 rounded-md p-2 gap-2"
+        class="flex flex-col items-center rounded-md p-2 gap-2"
       >
-        <img *ngIf="ingredient.img" [src]="ingredient.img" class="w-20 h-20" />
+        <img *ngIf="ingredient.img" [src]="ingredient.img" class="w-14 h-14" />
         <div
           *ngIf="!ingredient.img"
-          class="w-20 h-20 bg-gray-200 rounded-md flex items-center justify-center shadow-md"
+          class="w-14 h-14 bg-gray-200 rounded-md flex items-center justify-center shadow-md"
         >
           <fa-icon [icon]="faShrimp" class="text-gray-300 text-5xl"></fa-icon>
         </div>
-        <span>{{ ingredient.measure }} {{ ingredient.name }}</span>
+        <span class="text-center"
+          >{{ ingredient.measure }} {{ ingredient.name }}</span
+        >
       </li>
     </ul>
   </div>
