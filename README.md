@@ -49,4 +49,4 @@ Start the application
 - Favorite list
 ![favorites](https://github.com/apekul/recipebook/assets/22819317/56fb2fe0-d42f-4bfe-931f-e9787f7e3d30)
 - Recipe
-![recipepage](https://github.com/apekul/recipebook/assets/22819317/3666aa8d-f609-4b75-9409-01660626d0bf)
+![item](https://github.com/apekul/recipebook/assets/22819317/177f3676-b7b9-4954-86c1-c3a0b3f01bd0)
