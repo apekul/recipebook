@@ -1,8 +1,8 @@
 <section class="flex flex-col gap-5">
-  <h1 class="text-2xl font-bold text-center lg:text-start pb-5">Reviews</h1>
+  <h1 class="text-2xl font-bold text-center pb-5">Reviews</h1>
 
   <!-- Rate Stats -->
-  <ul class="flex w-full gap-10 items-center justify-center">
+  <ul class="flex gap-10 flex-col md:flex-row items-center justify-center">
     <li class="flex flex-col">
       <p class="text-5xl font-semibold">4.10</p>
       <div class="w-[6rem]">
@@ -12,21 +12,22 @@
           class="text-yellow-400"
         ></fa-icon>
       </div>
-      <p>100 reviews</p>
+      <p>{{ totalReviews }}reviews</p>
     </li>
-    <li class="flex flex-col-reverse w-full items-center gap-2">
+    <li class="flex flex-col-reverse items-center gap-2 w-full lg:w-[40rem]">
       <div
-        *ngFor="let star of stars; index as i"
+        *ngFor="let review of reviews; index as i"
         class="flex w-full items-center"
       >
         <p class="font-semibold w-5">{{ i + 1 }}</p>
-        <div class="w-1/2 relative">
+        <div class="w-full relative">
           <div class="bg-gray-200 w-full py-2 absolute -top-2 rounded-md"></div>
           <div
             class="bg-blue-500 py-2 absolute -top-2 rounded-md"
-            [ngStyle]="{ width: i + 5 + 'rem' }"
+            [ngStyle]="{ width: calculatePercentage(review) + '%' }"
           ></div>
         </div>
+        <p class="font-semibold ml-2 w-5">{{ reviews[i] }}</p>
       </div>
     </li>
   </ul>
@@ -47,13 +48,33 @@
   </form>
 
   <!-- Review List -->
-  <ul class="bg-red-200">
+  <ul class="flex flex-col gap-5">
+    <!-- Sample Review -->
     <li class="flex gap-5">
-      <p>Date</p>
-      <p>Stars</p>
-      <p>Guest</p>
-      <p>UserIcon</p>
-      <p>review</p>
+      <div class="bg-gray-300 w-14 h-14 rounded-md"></div>
+      <div class="flex flex-col bg-white px-3 py-1 rounded-md w-full relative">
+        <fa-icon
+          [icon]="faPlay"
+          class="absolute top-0 -left-2 rotate-180 text-white"
+        ></fa-icon>
+        <span class="flex gap-3">
+          <p class="font-semibold">Guest</p>
+          <p class="text-gray-400">24.06.2024</p>
+        </span>
+        <div class="w-[8rem]">
+          <fa-icon
+            [icon]="faStar"
+            *ngFor="let star of stars; index as i"
+            class="text-yellow-400 text-xl"
+          ></fa-icon>
+        </div>
+        <p class="p-2">
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book.
+        </p>
+      </div>
     </li>
   </ul>
 </section>
