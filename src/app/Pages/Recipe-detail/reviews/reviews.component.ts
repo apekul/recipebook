@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-reviews',
@@ -11,6 +12,8 @@ export class ReviewsComponent implements OnInit {
   review: any[] = [];
   id: any;
   showForm = false;
+  faStar = faStar;
+  stars = Array(5).fill(0);
 
   constructor(
     private userServices: UserService,
