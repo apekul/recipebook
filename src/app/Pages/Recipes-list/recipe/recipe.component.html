@@ -10,7 +10,7 @@
     (click)="$event.stopPropagation(); addToFavorites()"
   />
   <p class="text-start truncate font-bold text-xl mr-5">
-    {{ recipe.strMeal }}a
+    {{ recipe.strMeal }}
   </p>
   <div class="pb-2">
     <span *ngFor="let star of stars; index as i">
@@ -23,9 +23,9 @@
   <div>
     <img [src]="recipe.strMealThumb" class="rounded-md object-contain w-full" />
 
-    <span class="flex items-center text-white flex-wrap gap-1">
+    <!-- <span class="flex items-center text-white flex-wrap gap-1">
       <p class="bg-blue-500 px-2 rounded-md">{{ recipe.strArea }}</p>
       <p class="bg-orange-500 px-2 rounded-md">{{ recipe.strCategory }}</p>
-    </span>
+    </span> -->
   </div>
 </li>
